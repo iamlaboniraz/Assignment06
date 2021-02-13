@@ -47,9 +47,9 @@ const selectItem = (event, img) => {
   if (item === -1) {
     sliders.push(img);
   } else {
-    alert('Hey, Already added !');
+    // alert('Hey, Already added !');
     // sliders.pop(img);
-    // element.classList.remove('added');
+    element.classList.remove('added');
   }
 }
 var timer
@@ -119,6 +119,13 @@ const changeSlide = (index) => {
   items[index].style.display = "block"
 }
 
+
+document.getElementById("search")
+  .addEventListener("keypress", function (event) {
+    if (event.key == "Enter") {
+      searchBtn.click()
+    }
+  })
 searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
@@ -128,14 +135,7 @@ searchBtn.addEventListener('click', function () {
 })
 
 
-// document.getElementById("search-field")
-//   .addEventListener("keypress", function (event) {
-//     console.log("keycode", event.key);
-//     // event.preventDefault();
-//     if (event.key == "Enter") {
-//       searchBtn.click()
-//     }
-//   })
+
 
 
 sliderBtn.addEventListener('click', function () {
