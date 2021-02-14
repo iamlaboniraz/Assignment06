@@ -21,9 +21,24 @@ const showImages = (images) => {
   // show gallery title
   galleryHeader.style.display = 'flex';
   images.forEach(image => {
+    console.log(images)
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.innerHTML = `
+    <div class="photo-frame" onclick=selectItem(event,"${image.webformatURL}")>
+            <img class="img-fluid img-thumbnail"  src="${image.webformatURL}" alt="${image.tags}">
+        <div class="photo-detail">
+            <h5>${image.user}</h5>
+        </div>
+    </div>
+
+    
+    
+     `;
+    // div.innerHTML = `
+    //  <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">
+    //  <h4>${image.user}</h4>
+    //  `;
     gallery.appendChild(div)
   })
 
@@ -79,11 +94,12 @@ const createSlider = () => {
     duration = 1000
   }
   sliders.forEach(slide => {
+    console.log(slide)
     let item = document.createElement('div')
     item.className = "slider-item";
-    item.innerHTML = `<img class="w-100"
-    src="${slide}"
-    alt="">`;
+    item.innerHTML = `
+          <img class="w-100" src="${slide}" alt="">
+    `;
     sliderContainer.appendChild(item)
   })
   changeSlide(0)
