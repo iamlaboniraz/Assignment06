@@ -72,16 +72,12 @@ img {
   margin: 10px;
   overflow: hidden;
 }
-/* .photo-frame .photo img{
-  width:100%;
-} */
 
 .photo-detail{
   position: absolute;
   top: 10px;
   left: 50px;
 }
-
 
  .photo-frame:hover .photo-detail{
   color: white;

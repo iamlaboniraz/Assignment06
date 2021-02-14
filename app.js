@@ -20,8 +20,8 @@ const showImages = (images) => {
   gallery.innerHTML = '';
   // show gallery title
   galleryHeader.style.display = 'flex';
+  toggleSpinner();
   images.forEach(image => {
-    console.log(images)
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = `
@@ -31,21 +31,16 @@ const showImages = (images) => {
             <h5>${image.user}</h5>
         </div>
     </div>
-
-    
-    
      `;
-    // div.innerHTML = `
-    //  <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">
-    //  <h4>${image.user}</h4>
-    //  `;
     gallery.appendChild(div)
+    
   })
 
 }
 
 const getImages = (query) => {
   const url = `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`;
+  toggleSpinner();
   fetch(url)
     .then(response => response.json())
     // .then(data => showImages(data.hitS))
@@ -54,6 +49,7 @@ const getImages = (query) => {
 }
 
 let slideIndex = 0;
+toggleSpinner();
 const selectItem = (event, img) => {
   let element = event.target;
   element.classList.add('added');
@@ -87,14 +83,12 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  // const duration = document.getElementById('duration').value || 1000;
   let duration = document.getElementById('duration').value || 1000;
   if (duration < 0) {
     alert("You insert negative duration. So, this duration will be auto change is 1000")
     duration = 1000
   }
   sliders.forEach(slide => {
-    console.log(slide)
     let item = document.createElement('div')
     item.className = "slider-item";
     item.innerHTML = `
@@ -157,3 +151,9 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+
+const toggleSpinner = (show) =>{
+  const spinner = document.getElementById("loading-spinner");
+  spinner.classList.toggle('d-none');
+}
