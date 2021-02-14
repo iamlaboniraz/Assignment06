@@ -43,13 +43,11 @@ const getImages = (query) => {
   toggleSpinner();
   fetch(url)
     .then(response => response.json())
-    // .then(data => showImages(data.hitS))
     .then(data => showImages(data.hits))
     .catch(err => console.log(err))
 }
 
 let slideIndex = 0;
-toggleSpinner();
 const selectItem = (event, img) => {
   let element = event.target;
   element.classList.add('added');
